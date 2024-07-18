@@ -1,8 +1,9 @@
 package com.example.user.models;
-
-import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @Getter

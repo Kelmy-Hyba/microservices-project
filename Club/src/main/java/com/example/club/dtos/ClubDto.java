@@ -1,7 +1,6 @@
 package com.example.club.dtos;
 
 import com.example.club.Models.TypeClub;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -29,6 +30,12 @@ public class ClubService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+  /*  public void sendMessage(String message) {
+        kafkaTemplate.send("haha", message);
+    }*/
 
 
     private static final Logger logger = LoggerFactory.getLogger(ClubService.class);
@@ -51,7 +58,7 @@ public class ClubService {
 
     // Utilisation de FeignClient pour récupérer un utilisateur par ID
 
-    @CircuitBreaker(name = "stockService", fallbackMethod = "handleGetStockFailure")
+    //@CircuitBreaker(name = "stockService", fallbackMethod = "handleGetStockFailure")
     public UserDto getUserById(String userId) {
         return userClient.getUserById(userId);
     }

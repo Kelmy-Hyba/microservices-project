@@ -18,10 +18,7 @@ public class ClubController {
     @Autowired
     private ClubService clubService;
 
-    @GetMapping("/user/{userId}")
-    public UserDto getUser(@PathVariable String userId) {
-        return clubService.getUserById(userId);
-    }
+
 
     @GetMapping
     public List<ClubDto> getAllClubs() {
@@ -80,9 +77,21 @@ public class ClubController {
         return club;
     }
 
-    // Endpoint pour créer un utilisateur
+    // Avec RestTemplate
     @PostMapping("/users/add")
     public UserDto createUser(@RequestBody UserDto userDto) {
         return clubService.createUser(userDto);
     }
+
+    //Avec OpenFeign
+    @GetMapping("/user/{userId}")
+    public UserDto getUser(@PathVariable String userId) {
+        return clubService.getUserById(userId);
+    }
+
+   /* @PostMapping("/sendmessage")
+    public ResponseEntity<String> sendMessageToKafka(@RequestBody String message) {
+        clubService.sendMessage(message);
+        return ResponseEntity.ok("Message sent to Kafka: " + message);
+    }*/
 }

@@ -4,12 +4,19 @@ import com.example.user.dtaos.UserDto;
 import com.example.user.models.User;
 import com.example.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+/*    @KafkaListener(topics = "haha", groupId = "2")
+    public void consume(String message) {
+        System.out.println("Received message from Kafka: " + message);
+        // Process the message
+    }*/
 
     public UserDto convertToDTO(User user) {
         UserDto userDTO = new UserDto();
